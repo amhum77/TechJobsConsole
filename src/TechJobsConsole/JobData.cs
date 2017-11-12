@@ -57,7 +57,22 @@ namespace TechJobsConsole
 
             return jobs;
         }
-
+        /*
+         * search for a string within each column and return list of jobs with that string value,
+         * aking sure each listing returns only once
+         *
+        *public static List<Dictionary<string, string>>FindByValue(string value)
+        *{ 
+        *    LoadData();
+        *
+        *    List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+        *
+        *    foreach (Dictionary<string, string> row in AllJobs)
+         *   {
+         *       string aValue = row[]//fix this! I did not type findby column and value!!
+         *   }
+         *}
+         */
         /*
          * Load and parse data from job_data.csv
          */
@@ -138,5 +153,7 @@ namespace TechJobsConsole
 
             return rowValues.ToArray();
         }
+
+        
     }
 }
