@@ -43,38 +43,53 @@ namespace TechJobsConsole
             // load data, if not already loaded
             LoadData();
 
+            string lowerColumn = column.ToLower();
+            string lowerValue = value.ToLower();
+
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
                 string aValue = row[column];
+                string aValueLower = aValue.ToLower();
 
-                if (aValue.Contains(value))
+                if (aValueLower.Contains(lowerValue))
                 {
                     jobs.Add(row);
                 }
             }
-
             return jobs;
         }
         /*
          * search for a string within each column and return list of jobs with that string value,
-         * aking sure each listing returns only once
-         *
-        *public static List<Dictionary<string, string>>FindByValue(string value)
-        *{ 
-        *    LoadData();
-        *
-        *    List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-        *
-        *    foreach (Dictionary<string, string> row in AllJobs)
-         *   {
-         *       string aValue = row[]//fix this! I did not type findby column and value!!
-         *   }
-         *}
+         * making sure each listing returns only once
          */
-        /*
-         * Load and parse data from job_data.csv
+        public static List<Dictionary<string,string>>FindByValue(string value)
+        { 
+            LoadData();
+
+            string lowerValue = value.ToLower();
+        
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+           
+                foreach (Dictionary<string, string> jobsData in AllJobs)
+                {
+                    foreach (KeyValuePair<string, string> jobsDescriptor in jobsData)
+                    {
+                        string aValue = jobsDescriptor.Value;
+
+                        string aValueLower = aValue.ToLower();
+
+                        if (aValueLower.Contains(lowerValue))
+                        {                                                     
+                            jobs.Add(jobsData);
+                        }       
+                    }
+                }
+             return jobs;
+         }
+        
+         /* Load and parse data from job_data.csv
          */
         private static void LoadData()
         {
