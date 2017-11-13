@@ -71,21 +71,25 @@ namespace TechJobsConsole
             string lowerValue = value.ToLower();
         
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
-           
-                foreach (Dictionary<string, string> jobsData in AllJobs)
+
+            foreach (Dictionary<string, string> jobsData in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> jobsDescriptor in jobsData)
                 {
-                    foreach (KeyValuePair<string, string> jobsDescriptor in jobsData)
+                    string aValue = jobsDescriptor.Value;
+
+                    string aValueLower = aValue.ToLower();
+
+                    if (aValueLower.Contains(lowerValue))
                     {
-                        string aValue = jobsDescriptor.Value;
-
-                        string aValueLower = aValue.ToLower();
-
-                        if (aValueLower.Contains(lowerValue))
-                        {                                                     
+                        if (!jobs.Contains(jobsData))
+                        {
                             jobs.Add(jobsData);
-                        }       
+                        }
+
                     }
                 }
+            }
              return jobs;
          }
         
